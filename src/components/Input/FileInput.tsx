@@ -136,7 +136,7 @@ const FileInputBase: ForwardRefRenderFunction<
   return (
     <FormControl isInvalid={!!error}>
       <FormLabel
-        mx="auto"
+        mx='auto'
         w={40}
         h={40}
         htmlFor={name}
@@ -145,63 +145,63 @@ const FileInputBase: ForwardRefRenderFunction<
       >
         {localImageUrl && !isSending ? (
           <Image
-            w="full"
-            h="full"
+            w='full'
+            h='full'
             src={localImageUrl}
-            alt="Uploaded photo"
-            borderRadius="md"
-            objectFit="cover"
+            alt='Uploaded photo'
+            borderRadius='md'
+            objectFit='cover'
           />
         ) : (
           <Flex
-            w="full"
-            h="full"
-            flexDir="column"
-            justifyContent="center"
-            alignItems="center"
-            borderRadius="md"
-            bgColor="pGray.800"
-            color="pGray.200"
+            w='full'
+            h='full'
+            flexDir='column'
+            justifyContent='center'
+            alignItems='center'
+            borderRadius='md'
+            bgColor='pGray.800'
+            color='pGray.200'
             borderWidth={error?.message && 2}
             borderColor={error?.message && 'red.500'}
           >
             {isSending ? (
               <>
                 <CircularProgress
-                  trackColor="pGray.200"
+                  trackColor='pGray.200'
                   value={progress}
-                  color="orange.500"
+                  color='orange.500'
                 >
                   <CircularProgressLabel>{progress}%</CircularProgressLabel>
                 </CircularProgress>
-                <Text as="span" pt={2} textAlign="center">
+                <Text as='span' pt={2} textAlign='center'>
                   Enviando...
                 </Text>
               </>
             ) : (
-              <Box pos="relative" h="full">
+              <Box pos='relative' h='full'>
                 {!!error && (
-                  <Tooltip label={error.message} bg="red.500">
+                  <Tooltip label={error.message} bg='red.500'>
                     <FormErrorMessage
-                      pos="absolute"
+                      pos='absolute'
                       right={2}
                       top={2}
                       mt={0}
-                      zIndex="tooltip"
+                      zIndex='tooltip'
                     >
-                      <Icon as={FiAlertCircle} color="red.500" w={4} h={4} />
+                      <Icon as={FiAlertCircle} color='red.500' w={4} h={4} />
                     </FormErrorMessage>
                   </Tooltip>
                 )}
 
                 <Flex
-                  h="full"
-                  alignItems="center"
-                  justifyContent="center"
-                  flexDir="column"
+                  h='full'
+                  alignItems='center'
+                  justifyContent='center'
+                  flexDir='column'
                 >
                   <Icon as={FiPlus} w={14} h={14} />
-                  <Text as="span" pt={2} textAlign="center">
+                  <Text as='span' pt={2} textAlign='center'>
                     Adicione sua imagem
                   </Text>
                 </Flex>
@@ -216,7 +216,7 @@ const FileInputBase: ForwardRefRenderFunction<
           name={name}
           onChange={handleImageUpload}
           ref={ref}
-          type="file"
+          type='file'
           style={{
             display: 'none',
           }}

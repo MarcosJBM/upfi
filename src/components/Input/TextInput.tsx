@@ -21,18 +21,18 @@ const TextInputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 ) => {
   return (
     <FormControl
-      display="flex"
-      flexDirection="row"
-      alignItems="center"
+      display='flex'
+      flexDirection='row'
+      alignItems='center'
       isInvalid={!!error}
     >
       <ChakraInput
         aria-label={name}
         name={name}
         ref={ref}
-        borderColor="transparent"
-        bgColor="pGray.800"
-        color="pGray.50"
+        borderColor='transparent'
+        bgColor='pGray.800'
+        color='pGray.50'
         _placeholder={{
           color: 'pGray.200',
         }}
@@ -45,9 +45,9 @@ const TextInputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
       />
 
       {!!error && (
-        <Tooltip label={error.message} bg="red.500">
-          <FormErrorMessage ml={-6} mt={0} zIndex="tooltip">
-            <Icon as={FiAlertCircle} color="red.500" w={4} h={4} />
+        <Tooltip label={error.message} bg='red.500'>
+          <FormErrorMessage ml={-6} mt={0} zIndex='tooltip'>
+            <Icon as={FiAlertCircle} color='red.500' w={4} h={4} />
           </FormErrorMessage>
         </Tooltip>
       )}
