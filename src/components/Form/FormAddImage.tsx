@@ -11,22 +11,50 @@ interface FormAddImageProps {
   closeModal: () => void;
 }
 
+const IMAGE_LIMIT_SIZE_IN_MB = 10;
+function validateImageSize(file: File): string | boolean {
+  const fileSizeInMb = file.size / (1024 * 1024);
+
+  if (fileSizeInMb <= IMAGE_LIMIT_SIZE_IN_MB) return true;
+
+  return 'O arquivo deve ser menor que 10MB';
+}
+
+const acceptedImageFormats = ['image/jpeg', 'image/png', 'image/gif'];
+
+function validateImageFormat(file: File): string | boolean {
+  if (acceptedImageFormats.includes(file.type)) return true;
+
+  return 'Somente são aceitos arquivos PNG, JPEG e GIF';
+}
+
+const formValidations = {
+  image: {
+    required: 'Arquivo obrigatório',
+    validate: {
+      lessThan10MB: (file: File[]) => {
+        return validateImageSize(file[0]);
+      },
+      acceptedFormats: (file: File[]) => {
+        return validateImageFormat(file[0]);
+      },
+    },
+  },
+  title: {
+    required: 'Título obrigatório',
+    minLength: { message: 'Mínimo de 2 caracteres', value: 2 },
+    maxLength: { message: 'Máximo de 20 caracteres', value: 20 },
+  },
+  description: {
+    required: 'Descrição obrigatória',
+    maxLength: { message: 'Máximo de 65 caracteres', value: 65 },
+  },
+} as const;
+
 export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
   const [imageUrl, setImageUrl] = useState('');
   const [localImageUrl, setLocalImageUrl] = useState('');
   const toast = useToast();
-
-  const formValidations = {
-    image: {
-      // TODO REQUIRED, LESS THAN 10 MB AND ACCEPTED FORMATS VALIDATIONS
-    },
-    title: {
-      // TODO REQUIRED, MIN AND MAX LENGTH VALIDATIONS
-    },
-    description: {
-      // TODO REQUIRED, MAX LENGTH VALIDATIONS
-    },
-  };
 
   const queryClient = useQueryClient();
   const mutation = useMutation(
@@ -61,20 +89,20 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
           setLocalImageUrl={setLocalImageUrl}
           setError={setError}
           trigger={trigger}
-          // TODO SEND IMAGE ERRORS
-          // TODO REGISTER IMAGE INPUT WITH VALIDATIONS
+          {...register('image', formValidations.image)}
+          error={errors?.image}
         />
 
         <TextInput
           placeholder='Título da imagem...'
-          // TODO SEND TITLE ERRORS
-          // TODO REGISTER TITLE INPUT WITH VALIDATIONS
+          {...register('title', formValidations.title)}
+          error={errors?.title}
         />
 
         <TextInput
           placeholder='Descrição da imagem...'
-          // TODO SEND DESCRIPTION ERRORS
-          // TODO REGISTER DESCRIPTION INPUT WITH VALIDATIONS
+          {...register('description', formValidations.description)}
+          error={errors?.description}
         />
       </Stack>
 
