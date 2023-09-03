@@ -1,35 +1,36 @@
-<p align="center">
-  <img alt="Rocketseat Education" src="https://avatars.githubusercontent.com/u/69590972?s=200&v=4" width="100px" />
-</p>
+<div align='center'>
+  <img src='.github/logo.svg' alt='Logo do projeto upfi'/>
+</div>
 
-<p align="center">
-  <img src="https://img.shields.io/static/v1?label=Rocketseat&message=Education&color=8257e5&labelColor=202024" alt="Rocketseat Project" />
-  <a href="LICENSE"><img  src="https://img.shields.io/static/v1?label=License&message=MIT&color=8257e5&labelColor=202024" alt="License"></a>
-</p>
+<div align='center'>
+  <a href='#about'>📖 Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href='#technologies'>🔩 Tecnologias</a>
+</div>
 
-## 💻 Projeto
+</br>
 
-ignite-template-reactjs-upload-de-imagens
+<div align="center">
+  <img src=".github/front-cover.svg" alt="Capa do projeto upfi" width="780px" />
+</div>
 
-## 📝 Licença
+<a id="about"></a>
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+# 📖 Sobre o Projeto
 
----
+O **upfi** é um site simples de upload de imagens, tendo como foco principal, praticar certas tecnologias como NextJS, React Query, React Hook Form, entre outras.
 
-<p align="center">
-  Feito com 💜 by Rocketseat
-</p>
+Este projeto faz parte de uma série de desafios a serem concluídos na trilha de ReactJS do curso Ignite da @Rocketseat.
 
-<!--START_SECTION:footer-->
+<a id="technologies"></a>
 
-<br />
-<br />
+# 🔩 Tecnologias
 
-<p align="center">
-  <a href="https://discord.gg/rocketseat" target="_blank">
-    <img align="center" src="https://storage.googleapis.com/golden-wind/comunidade/rodape.svg" alt="banner"/>
-  </a>
-</p>
+Estas foram as principais tecnologias utilizadas no desenvolvimento da aplicação.
 
-<!--END_SECTION:footer-->
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [NextJS](https://nextjs.org/)
+- [FaunaDB](https://fauna.com/)
+- [React Hook Form](https://react-hook-form.com/)
+- [TanStack Query](https://tanstack.com/query/latest/)
+- [Axios](https://axios-http.com/ptbr/docs/intro)
