@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { theme } from '../styles/theme';
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const queryClient = new QueryClient();
 
   return (
@@ -15,5 +15,3 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     </ChakraProvider>
   );
 }
-
-export default MyApp;

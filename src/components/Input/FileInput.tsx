@@ -21,6 +21,7 @@ import {
   forwardRef,
   useCallback,
   useEffect,
+  Fragment,
 } from 'react';
 import {
   FieldError,
@@ -166,7 +167,7 @@ const FileInputBase: ForwardRefRenderFunction<
             borderColor={error?.message && 'red.500'}
           >
             {isSending ? (
-              <>
+              <Fragment>
                 <CircularProgress
                   trackColor='pGray.200'
                   value={progress}
@@ -177,7 +178,7 @@ const FileInputBase: ForwardRefRenderFunction<
                 <Text as='span' pt={2} textAlign='center'>
                   Enviando...
                 </Text>
-              </>
+              </Fragment>
             ) : (
               <Box pos='relative' h='full'>
                 {!!error && (

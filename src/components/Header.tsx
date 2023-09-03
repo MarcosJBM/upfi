@@ -1,4 +1,5 @@
 import { Box, Flex, Button, useDisclosure, Image } from '@chakra-ui/react';
+import { Fragment } from 'react';
 
 import { ModalAddImage } from './Modal/AddImage';
 
@@ -6,7 +7,7 @@ export function Header(): JSX.Element {
   const { onOpen, isOpen, onClose } = useDisclosure();
 
   return (
-    <>
+    <Fragment>
       <Box bgColor='pGray.800'>
         <Flex
           justifyContent='space-between'
@@ -17,11 +18,12 @@ export function Header(): JSX.Element {
           py={6}
         >
           <Image src='logo.svg' h={10} />
-          <Button onClick={() => onOpen()}>Adicionar imagem</Button>
+
+          <Button onClick={onOpen}>Adicionar imagem</Button>
         </Flex>
       </Box>
 
       <ModalAddImage isOpen={isOpen} onClose={onClose} />
-    </>
+    </Fragment>
   );
 }
