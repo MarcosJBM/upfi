@@ -3,16 +3,13 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 
-import { api } from '../../services/api';
 import { FileInput } from '../Input/FileInput';
 import { TextInput } from '../Input/TextInput';
-
-interface FormAddImageProps {
-  closeModal: () => void;
-}
+import { api } from '../../services/api';
 
 const IMAGE_LIMIT_SIZE_IN_MB = 10;
-function validateImageSize(file: File): string | boolean {
+
+function validateImageSize(file: File) {
   const fileSizeInMb = file.size / (1024 * 1024);
 
   if (fileSizeInMb <= IMAGE_LIMIT_SIZE_IN_MB) return true;
@@ -22,7 +19,7 @@ function validateImageSize(file: File): string | boolean {
 
 const acceptedImageFormats = ['image/jpeg', 'image/png', 'image/gif'];
 
-function validateImageFormat(file: File): string | boolean {
+function validateImageFormat(file: File) {
   if (acceptedImageFormats.includes(file.type)) return true;
 
   return 'Somente são aceitos arquivos PNG, JPEG e GIF';
@@ -51,34 +48,78 @@ const formValidations = {
   },
 } as const;
 
+interface CreateNewImageModel {
+  title: string;
+  description: string;
+  url: string;
+}
+
+async function createNewImage(newImage: CreateNewImageModel) {
+  await api.post('api/images', newImage);
+}
+
+interface FormAddImageProps {
+  closeModal: () => void;
+}
+
+interface FormProps {
+  title: string;
+  description: string;
+  image: string;
+}
+
 export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
-  const [imageUrl, setImageUrl] = useState('');
-  const [localImageUrl, setLocalImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState<string>('');
+  const [localImageUrl, setLocalImageUrl] = useState<string>('');
+
   const toast = useToast();
 
   const queryClient = useQueryClient();
-  const mutation = useMutation(
-    // TODO MUTATION API POST REQUEST,
-    {
-      // TODO ONSUCCESS MUTATION
-    }
-  );
+
+  const mutation = useMutation(createNewImage, {
+    onSuccess: () => queryClient.invalidateQueries('images'),
+  });
 
   const { register, handleSubmit, reset, formState, setError, trigger } =
-    useForm();
+    useForm<FormProps>();
+
   const { errors } = formState;
 
-  const onSubmit = async (data: Record<string, unknown>): Promise<void> => {
+  async function onSubmit(data: FormProps) {
     try {
-      // TODO SHOW ERROR TOAST IF IMAGE URL DOES NOT EXISTS
-      // TODO EXECUTE ASYNC MUTATION
-      // TODO SHOW SUCCESS TOAST
+      if (!imageUrl) {
+        toast({
+          title: 'Imagem não adicionada',
+          description:
+            'É preciso adicionar e aguardar o upload de uma imagem antes de realizar o cadastro.',
+          status: 'info',
+        });
+      } else {
+        await mutation.mutateAsync({
+          title: data.title,
+          description: data.description,
+          url: imageUrl,
+        });
+
+        toast({
+          title: 'Imagem cadastrada',
+          description: 'Sua imagem foi cadastrada com sucesso.',
+          status: 'success',
+        });
+      }
     } catch {
-      // TODO SHOW ERROR TOAST IF SUBMIT FAILED
+      toast({
+        title: 'Falha no cadastro',
+        description: 'Ocorreu um erro ao tentar cadastrar a sua imagem.',
+        status: 'error',
+      });
     } finally {
-      // TODO CLEAN FORM, STATES AND CLOSE MODAL
+      reset();
+      setImageUrl('');
+      setLocalImageUrl('');
+      closeModal();
     }
-  };
+  }
 
   return (
     <Box as='form' width='100%' onSubmit={handleSubmit(onSubmit)}>
@@ -87,10 +128,10 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
           setImageUrl={setImageUrl}
           localImageUrl={localImageUrl}
           setLocalImageUrl={setLocalImageUrl}
-          setError={setError}
-          trigger={trigger}
+          setError={(_, error) => setError('image', error)}
+          trigger={() => trigger('image')}
           {...register('image', formValidations.image)}
-          error={errors?.image}
+          error={errors.image}
         />
 
         <TextInput
