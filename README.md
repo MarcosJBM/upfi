@@ -19,7 +19,7 @@
 
 O **upfi** é um site simples de upload de imagens, tendo como foco principal, praticar certas tecnologias como NextJS, React Query, React Hook Form, entre outras.
 
-Este projeto faz parte de uma série de desafios a serem concluídos na trilha de ReactJS do curso Ignite da @Rocketseat.
+Este projeto faz parte de uma série de desafios a serem concluídos na trilha de ReactJS do curso Ignite da Rocketseat.
 
 <a id="technologies"></a>
 
