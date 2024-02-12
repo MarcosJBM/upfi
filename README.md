@@ -1,36 +1,15 @@
-<div align='center'>
-  <img src='.github/logo.svg' alt='Logo do projeto upfi'/>
-</div>
+# 📖 About
 
-<div align='center'>
-  <a href='#about'>📖 Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href='#technologies'>🔩 Tecnologias</a>
-</div>
+**upfi** is a simple image upload website, the main focus is to practice certain technologies such as Next.js, React Query, React Hook Form, among others.
 
-</br>
+This project is part of a series of mandatory challenges to be completed on [Rocketseat's](https://www.rocketseat.com.br/) Ignite course, React trail.
 
-<div align="center">
-  <img src=".github/front-cover.svg" alt="Capa do projeto upfi" width="780px" />
-</div>
-
-<a id="about"></a>
-
-# 📖 Sobre o Projeto
-
-O **upfi** é um site simples de upload de imagens, tendo como foco principal, praticar certas tecnologias como NextJS, React Query, React Hook Form, entre outras.
-
-Este projeto faz parte de uma série de desafios a serem concluídos na trilha de ReactJS do curso Ignite da Rocketseat.
-
-<a id="technologies"></a>
-
-# 🔩 Tecnologias
-
-Estas foram as principais tecnologias utilizadas no desenvolvimento da aplicação.
+# 🔩 Technologies
 
 - [React](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [NextJS](https://nextjs.org/)
-- [FaunaDB](https://fauna.com/)
+- [Next.js](https://nextjs.org/)
+- [Fauna](https://fauna.com/)
 - [React Hook Form](https://react-hook-form.com/)
 - [TanStack Query](https://tanstack.com/query/latest/)
 - [Axios](https://axios-http.com/ptbr/docs/intro)
